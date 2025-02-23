@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Ubicación a Telegram</title>
+    <script>
+        window.onload = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendLocation, showError);
+            } else {
+                alert("La geolocalización no es soportada por este navegador.");
+            }
+        };
+
+        function sendLocation(position) {
+            let lat = position.coords.latitude;
+            let lon = position.coords.longitude;
+            let botToken = "TU_BOT_TOKEN";  // Reemplaza con tu token de bot
+            let chatId = "TU_CHAT_ID";  // Reemplaza con tu ID de usuario o grupo
+            let message = `Ubicación actual: https://www.google.com/maps?q=${lat},${lon}`;
+            
+            let url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => console.log("Mensaje enviado:", data))
+                .catch(error => console.error("Error enviando mensaje:", error));
+        }
+
+        function showError(error) {
+            alert("No se pudo obtener la ubicación.");
+        }
+    </script>
+</head>
+<body>
+    <p>Obteniendo ubicación y enviándola a Telegram...</p>
+</body>
+</html>
